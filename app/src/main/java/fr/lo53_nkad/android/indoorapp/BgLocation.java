@@ -48,16 +48,38 @@ public class BgLocation extends AsyncTask<String,String,JSONObject> {
             );
             String inputLine;
             StringBuffer response = new StringBuffer();
-            while((inputLine = in.readLine())!= null){
-                response.append(inputLine);
+            switch (responseCode){
+                case HttpURLConnection.HTTP_OK:
+                    while((inputLine = in.readLine())!= null){
+                        response.append(inputLine);
+                    }
+                    in.close();
+                    Log.v(TAG, response.toString());
+                    try{
+                        location = new JSONObject(response.toString());
+                    }catch (JSONException jo){
+                        jo.printStackTrace();
+                    }
+                    Log.v("REQ result :",location.toString());
+                    break;
+                case HttpURLConnection.HTTP_NOT_FOUND:
+                    try{
+                        location = new JSONObject("Error: Server Not found 404");
+                    }catch (JSONException jo){
+                        jo.printStackTrace();
+                    }
+                    Log.v("REQ result :",location.toString());
+                    break;
+                case HttpURLConnection.HTTP_INTERNAL_ERROR:
+                    try{
+                        location = new JSONObject("Error:Server error 500");
+                    }catch (JSONException jo){
+                        jo.printStackTrace();
+                    }
+                    Log.v("REQ result :",location.toString());
+                    break;
             }
-            in.close();
-            Log.v(TAG, response.toString());
-            try{
-                location = new JSONObject(response.toString());
-            }catch (JSONException jo){
-                jo.printStackTrace();
-            }
+
           /* inputStream = httpURLConnection.getInputStream();
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             int data = inputStreamReader.read();
@@ -78,6 +100,7 @@ public class BgLocation extends AsyncTask<String,String,JSONObject> {
         }finally {
             httpURLConnection.disconnect();
         }
+        Log.v("REQ result :",location.toString());
         return location;
     }
 

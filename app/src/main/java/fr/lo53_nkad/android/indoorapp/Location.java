@@ -30,6 +30,7 @@ public class Location extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
         mContext = getApplicationContext();
+        pos = new Position(getApplicationContext());
         /*
             On associe chaque elément au fichier de description XML
          */
@@ -47,10 +48,13 @@ public class Location extends ActionBarActivity {
         locationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String uri =  "http://192.168.1.73:1337/Android/getPostion";//http://10.42.0.1:8080/server/calibration";
+                String uri = "http://192.168.1.73:1337/Android/getPostion?mac="+pos.getMacAdd();//"http://192.168.2.9:8080/server/location";
+                Log.v("Location REQ GET :",pos.getMacAdd());
+                Log.v("Location REQ GET :",uri);
                 BgLocation locationTask = new BgLocation();
                 try{
                     location =  locationTask.execute(uri,pos.getMacAdd()).get();
+                    Log.v("Location REQ GET :",location.toString());
                 }catch (InterruptedException it){
                     it.printStackTrace();
                 } catch (ExecutionException e) {
