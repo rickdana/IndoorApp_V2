@@ -15,8 +15,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/settingImg"
         android:src="@drawable/settings"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="3.60" />
+        android:layout_gravity="center_horizontal" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -51,7 +50,8 @@
         android:layout_width="261dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_marginBottom="15dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -78,7 +78,7 @@
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="261dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:weightSum="1">
@@ -87,14 +87,17 @@
             android:layout_height="wrap_content"
             android:text="Validé"
             android:id="@+id/conf_btn_yes"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="50dp" />
+            android:background="#009688"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_weight="0.23" />
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:text="Annulé"
             android:id="@+id/conf_btn_no"
-            android:layout_marginTop="50dp" />
+            android:background="#EF5350"
+            android:layout_marginLeft="50dp" />
 
 
     </LinearLayout>

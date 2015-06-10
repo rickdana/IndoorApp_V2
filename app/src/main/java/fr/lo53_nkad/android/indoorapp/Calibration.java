@@ -19,7 +19,7 @@ import org.json.JSONObject;
 
 
 public class Calibration extends ActionBarActivity {
-    private ActionButton actionBtnY;
+    private ActionButton actionBtnY; // Action
     private ActionButton actionBtnN;
     private Context mContext;
     private ImageView mapPin;
@@ -111,7 +111,7 @@ public class Calibration extends ActionBarActivity {
         actionBtnN.hide();
     }
 
-    @Override
+   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_calibration, menu);

@@ -17,6 +17,7 @@ import java.net.URL;
 
 /**
  * Created by root on 31/05/15.
+ * Cette class hérite de la classe AsyncTask qui permet ainsi d'exécuter la tâche en backgoud.
  */
 public class BgLocation extends AsyncTask<String,String,JSONObject> {
     private static final String TAG = "HttpConnection";
@@ -96,6 +97,11 @@ public class BgLocation extends AsyncTask<String,String,JSONObject> {
             Log.v(TAG, "MalformedUrl");
         }catch (IOException io){
             io.printStackTrace();
+            try {
+                location = new JSONObject("Error:Server error 500");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             Log.v(TAG, "IoExeption");
         }finally {
             httpURLConnection.disconnect();
